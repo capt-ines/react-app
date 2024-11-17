@@ -1,10 +1,11 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import App from "./App.jsx";
+import Students from "./App2.jsx";
 
 createRoot(document.getElementById("root")).render(
+  //render = add components from vdom to dom
   <StrictMode>
-    <App />
+    <Students />
   </StrictMode>
 );
