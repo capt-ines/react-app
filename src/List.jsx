@@ -1,4 +1,4 @@
-function List({ category, items }) {
+function List({ category = "undefined", items = [] }) {
   const listItems = items.map((item) => {
     return (
       <li key={item.id}>
