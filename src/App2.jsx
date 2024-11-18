@@ -1,12 +1,13 @@
 import { useState, Fragment, useEffect } from "react";
 import "./App.css";
+import PropTypes from "prop-types";
 
-function StudentCard(props) {
+function StudentCard({ name = "unknown", age = "unknown", isStudent = false }) {
   return (
     <>
-      <p>Name:{props.name}</p>
-      <p>Age:{props.age}</p>
-      <p>Student?:{props.isStudent ? "Yes" : "No"}</p>
+      <p>Name:{name}</p>
+      <p>Age:{age}</p>
+      <p>Student?:{isStudent ? "Yes" : "No"}</p>
     </>
   );
 }
@@ -17,6 +18,7 @@ function Students() {
       <StudentCard name="John" age={20} isStudent={true}></StudentCard>
       <StudentCard name="Alice" age={23} isStudent={true}></StudentCard>
       <StudentCard name="Ray" age={30} isStudent={false}></StudentCard>
+      <StudentCard></StudentCard>
     </>
   );
 }
