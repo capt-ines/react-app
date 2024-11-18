@@ -7,8 +7,6 @@ import App4 from "./App4.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <App3 />
-    <Students />
     <App4 />
   </StrictMode>
 );
