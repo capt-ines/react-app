@@ -6,9 +6,12 @@ import Counter from "./Counter.jsx";
 import App5 from "./App5.jsx";
 import App6 from "./App6.jsx";
 import Accordion from "./App7.jsx";
+import Accordion2 from "./App8.jsx";
+import Form from "./App8.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
+    <Accordion2 />
     <App5 />
     <ListButton />
     <Counter />

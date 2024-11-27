@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { generalAviationPlanes } from "./ItemsForList";
 
-function App6() {
+export default function App6() {
   const [planes, setPlanes] = useState(generalAviationPlanes);
 
   return (
     <>
-      <h2>Delete them:</h2>
       <ul>
         {planes.map((plane) => (
           <li key={plane.id}>
@@ -26,5 +25,3 @@ function App6() {
     </>
   );
 }
-
-export default App6;
