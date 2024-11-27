@@ -2,43 +2,39 @@ import { useState } from "react";
 
 export default function Accordion2() {
   const [activeIndex, setActiveIndex] = useState(null);
+
+  const panels = [
+    { name: "Cessna", content: "This is a Cessna panel." },
+    { name: "Piper", content: "This is a Piper panel." },
+    { name: "Cirrus", content: "This is a Cirrus panel." },
+  ];
+
+  const togglePanel = (index) => {
+    //prosta funkcja toggle
+    setActiveIndex((prevIndex) => (prevIndex === index ? null : index));
+  };
+
   return (
+    //mapa returnuje Panel component z datą z array panels
     <>
-      <Panel
-        name="Cessna"
-        isActive={activeIndex === 0}
-        onShow={() =>
-          setActiveIndex((prevIndex) => (prevIndex === 0 ? null : 0))
-        }
-      >
-        This is a Cessna panel.
-      </Panel>
-      <Panel
-        name="Piper"
-        isActive={activeIndex === 1}
-        onShow={() =>
-          setActiveIndex((prevIndex) => (prevIndex === 1 ? null : 1))
-        }
-      >
-        This is a Piper panel.
-      </Panel>
-      <Panel
-        name="Cirrus"
-        isActive={activeIndex === 2}
-        onShow={() =>
-          setActiveIndex((prevIndex) => (prevIndex === 2 ? null : 2))
-        }
-      >
-        This is a Cirrus panel.
-      </Panel>
+      {panels.map((panel, index) => (
+        <Panel
+          key={index}
+          name={panel.name}
+          isActive={activeIndex === index}
+          onToggle={() => togglePanel(index)}
+        >
+          {panel.content}
+        </Panel>
+      ))}
     </>
   );
 }
 
-function Panel({ name, children, isActive, onShow }) {
+function Panel({ name, children, isActive, onToggle }) {
   return (
     <>
-      <h2 onClick={onShow}>{name}</h2>
+      <h2 onClick={onToggle}>{name}</h2>
       {isActive ? <p>{children}</p> : null}
     </>
   );
