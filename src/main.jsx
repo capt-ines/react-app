@@ -8,16 +8,10 @@ import App6 from "./App6.jsx";
 import Accordion from "./App7.jsx";
 import Accordion2 from "./App8.jsx";
 import Accordion3 from "./App9.jsx";
-import Form from "./App8.jsx";
+import Chatroom from "./ChatRoom.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <Accordion2 />
-    <Accordion3 />
-    <App5 />
-    <ListButton />
-    <Counter />
-    <App6 />
-    <Accordion />
+    <Chatroom></Chatroom>
   </StrictMode>
 );
