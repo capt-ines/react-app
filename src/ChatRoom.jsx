@@ -1,9 +1,7 @@
 import { useState, useEffect, Fragment } from "react";
 import { createConnection } from "./Chat.jsx";
 
-const serverUrl = "https://localhost:1234";
-
-function ChatRoom({ roomId }) {
+function ChatRoom({ roomId, serverUrl }) {
   const [message, setMessage] = useState("");
   const [chatLog, setChatLog] = useState([]);
 
@@ -15,9 +13,9 @@ function ChatRoom({ roomId }) {
 
     return () => {
       connection.disconnect();
-      setChatLog((prevChatLog) => (prevChatLog = []));
+      setChatLog([]); //ok?
     }; //cleanup must return a function (here it's an anonnymous arrow function), not execute it right away! So no: return (connection.disconnect())
-  }, [roomId]);
+  }, [roomId, serverUrl]);
 
   const handleMessage = () => {
     setChatLog((prevChatLog) => [...prevChatLog, message]);
@@ -43,8 +41,21 @@ function ChatRoom({ roomId }) {
 
 export default function App() {
   const [roomId, setRoomId] = useState("general");
+  const [serverUrlInput, setServerUrlInput] = useState("");
+  const [activeServerUrl, setActiveServerUrl] = useState("");
+
+  const handleServer = () => {
+    setActiveServerUrl(serverUrlInput);
+  };
+
   return (
     <>
+      <input
+        placeholder="Type server Url..."
+        value={serverUrlInput}
+        onChange={(e) => setServerUrlInput(e.target.value)}
+      ></input>
+      <button onClick={handleServer}>Connect to server</button>
       <label>
         <select value={roomId} onChange={(e) => setRoomId(e.target.value)}>
           <option value="general">general</option>
@@ -53,7 +64,7 @@ export default function App() {
         </select>
       </label>
       <h1>Welcome to the {roomId} room!</h1>
-      <ChatRoom roomId={roomId}></ChatRoom>
+      <ChatRoom roomId={roomId} serverUrl={activeServerUrl}></ChatRoom>
     </>
   );
 }
