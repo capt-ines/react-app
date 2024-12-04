@@ -18,9 +18,14 @@ function ChatRoom({ roomId, serverUrl }) {
   }, [roomId, serverUrl]);
 
   const handleMessage = () => {
+    if (!message) return;
     setChatLog((prevChatLog) => [...prevChatLog, message]);
     setMessage("");
   };
+
+  useEffect(() => {
+    console.log(chatLog);
+  }, [chatLog]);
 
   return (
     <>
@@ -34,7 +39,9 @@ function ChatRoom({ roomId, serverUrl }) {
         value={message}
         onChange={(e) => setMessage(e.target.value)}
       ></input>
-      <button onClick={handleMessage}>Send</button>
+      <button disabled={!message} onClick={handleMessage}>
+        Send
+      </button>
     </>
   );
 }
@@ -45,6 +52,7 @@ export default function App() {
   const [activeServerUrl, setActiveServerUrl] = useState("");
   const [isServerSelected, setIsServerSelected] = useState(false);
   const handleServer = () => {
+    if (!serverUrlInput) return;
     setActiveServerUrl(serverUrlInput);
     setIsServerSelected(true);
   };
@@ -56,7 +64,9 @@ export default function App() {
         value={serverUrlInput}
         onChange={(e) => setServerUrlInput(e.target.value)}
       ></input>
-      <button onClick={handleServer}>Connect to server</button>
+      <button disabled={!serverUrlInput} onClick={handleServer}>
+        Connect to server
+      </button>
       {isServerSelected ? (
         <>
           <label>
